@@ -1,0 +1,23 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="3" rowHeight="530px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+      <div class="dashboard-card__img-box">
+        <img mat-card-image class="dashboard-card__img" src="{{card.imgUrl}}" alt="Article title">
+      </div>
+        <mat-card-header>
+          <mat-card-subtitle class="dashboard-card__subtitle">
+            <mat-icon aria-hidden="true" aria-label="icon calendar" class="dashboard-card__cal-icon">calendar_today
+            </mat-icon>
+            {{card.date}}
+          </mat-card-subtitle>
+          <mat-card-title class="dashboard-card__title">{{card.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card__content-box">
+          <div>{{card.text}}</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

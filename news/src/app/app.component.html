@@ -1,10 +1,2 @@
-<form>
-  <label for="filterText">Filter</label>
-  <input [(ngModel)]="filterText" id="filterText" type="text" name="filterText">
-</form>
-<ul>
-  <li *ngFor="let article of articlesList">
-    {{article | json}}
-  </li>
-</ul>
+<app-home-page></app-home-page>
 <router-outlet></router-outlet>

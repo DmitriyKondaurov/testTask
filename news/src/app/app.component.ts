@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private readonly restAPIService: RestAPIService ) { }
 
   ngOnInit(): void {
-    this.restAPIService.getArticles().subscribe((data: any) => {
+    this.restAPIService.getArticles(30).subscribe((data: any) => {
       this.articlesList = data;
       console.log(data);
     })
