@@ -10,7 +10,8 @@ import {Observable} from "rxjs";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
-  cards: Observable<iArticle[]> = this.restAPIService.getArticles(30).pipe(
+  articleAmount: number = 30;
+  cards: Observable<iArticle[]> = this.restAPIService.getArticles(this.articleAmount).pipe(
     map(( articles: any[] ) => articles.map(article => {
       return <iArticle>{
         title: article.title,

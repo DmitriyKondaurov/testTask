@@ -1,6 +1,6 @@
 
 <div class="grid-container">
-  <h1 class="mat-h1">Results: 20</h1>
+  <h1 class="mat-h1">Results: {{articleAmount}}</h1>
   <mat-grid-list cols="3" rowHeight="530px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
@@ -16,7 +16,7 @@
           <mat-card-title class="dashboard-card__title">{{card.title}}</mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card__content-box">
-          <div>{{card.text}}</div>
+          <div>{{card.text | shorten}}</div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

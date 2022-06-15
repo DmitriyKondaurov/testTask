@@ -13,12 +13,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ShortenPipe } from './pipes/shorten.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleComponent,
-    HomePageComponent
+    HomePageComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,
