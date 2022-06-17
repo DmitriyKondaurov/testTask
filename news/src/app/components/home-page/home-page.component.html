@@ -1,4 +1,3 @@
-
 <div class="grid-container">
   <h1 class="mat-h1">Results: {{articleAmount}}</h1>
   <mat-grid-list cols="3" rowHeight="530px">
@@ -9,7 +8,8 @@
       </div>
         <mat-card-header>
           <mat-card-subtitle class="dashboard-card__subtitle">
-            <mat-icon aria-hidden="true" aria-label="icon calendar" class="dashboard-card__cal-icon">calendar_today
+            <mat-icon aria-hidden="true" aria-label="icon calendar" class="dashboard-card__cal-icon">
+              calendar_today
             </mat-icon>
             {{card.date}}
           </mat-card-subtitle>
@@ -18,6 +18,12 @@
         <mat-card-content class="dashboard-card__content-box">
           <div>{{card.text | shorten}}</div>
         </mat-card-content>
+        <a mat-button class="button button--more" (click)=showWholeArticle(card.id)>
+          Read more
+          <mat-icon aria-hidden="true" aria-label="icon calendar" class="dashboard-card__arrow-icon">
+            arrow_forward
+          </mat-icon>
+        </a>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

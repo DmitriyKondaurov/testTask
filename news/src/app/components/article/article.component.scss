@@ -1,0 +1,34 @@
+.article {
+  height: 100%;
+  width: 100%;
+
+  .article__img-box {
+    height: 20%;
+
+    .article__img {
+      height: 100%;
+      width:  100%;
+      object-fit: cover;
+    }
+  }
+
+  .article__content {
+    position: relative;
+    top: -8%;
+    margin: 0 5%;
+    padding: 2% 5%;
+    background-color: #fff;
+
+    .article__title {
+      padding: 0 0 15px 0;
+      text-align: center;
+    }
+
+    .article__text {
+      font-size: 18px;
+    }
+  }
+  .button--back {
+    padding: 0;
+  }
+}

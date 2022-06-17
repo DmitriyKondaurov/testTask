@@ -14,4 +14,9 @@ export class RestAPIService {
     const params = new HttpParams().append('_limit', amount);
     return this.http.get(this.url, {headers, params});
   }
+
+  getArticle(id: number): Observable<any> {
+    const headers = new HttpHeaders().append('Content-Type', 'application/json');
+    return this.http.get(`${this.url}/${id}`, {headers});
+  }
 }

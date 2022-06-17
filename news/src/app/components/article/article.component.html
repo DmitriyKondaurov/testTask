@@ -1,1 +1,10 @@
-<p>article works!</p>
+<article class="article">
+  <div class="article__img-box">
+    <img class="article__img" src="{{article.imageUrl}}" alt="Article title">
+  </div>
+  <div class="article__content">
+    <h1 class="article__title">{{article.title}}</h1>
+    <p class="article__text">{{article.summary}}</p>
+    <a mat-button href="" class="button button--back">Back to homepage</a>
+  </div>
+</article>

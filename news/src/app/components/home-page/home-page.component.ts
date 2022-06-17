@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import {RestAPIService} from "../../services/rest-api.service";
 import {iArticle} from "../../app-interfaces";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -13,7 +14,9 @@ export class HomePageComponent {
   articleAmount: number = 30;
   cards: Observable<iArticle[]> = this.restAPIService.getArticles(this.articleAmount).pipe(
     map(( articles: any[] ) => articles.map(article => {
+      console.log(article);
       return <iArticle>{
+        id: article.id,
         title: article.title,
         imgUrl: article.imageUrl,
         date: article.publishedAt,
@@ -24,5 +27,9 @@ export class HomePageComponent {
     })
   ));
 
-  constructor(private readonly restAPIService: RestAPIService ) {}
+  constructor(private readonly restAPIService: RestAPIService, private router: Router  ) {}
+
+  showWholeArticle(id: number) {
+    this.router.navigateByUrl(`article/${id}`);
+  }
 }
