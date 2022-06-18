@@ -47,7 +47,11 @@ export class HomePageComponent {
     this.articlesList = this.articlesList
       .map(article => this.checkArticle(article))
       .filter(article => article.orderByTextMatch > 0 || article.orderByTitleMatch > 0)
-      .sort((a, b) => b.orderByTitleMatch - a.orderByTitleMatch)
+      .sort((a, b) => {
+        if ((b.orderByTitleMatch + b.orderByTextMatch) === (a.orderByTextMatch + a.orderByTitleMatch)) {
+          return b.orderByTitleMatch - a.orderByTitleMatch
+        } else return (b.orderByTitleMatch + b.orderByTextMatch) - (a.orderByTitleMatch + a.orderByTextMatch)
+      })
   }
 
   parseSentence(sentence: string): string[] {
