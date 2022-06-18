@@ -1,5 +1,14 @@
 $main-font: 'Montserrat', sans-serif;
 
+@mixin font($weight: normal, $size: 16px, $height: 35px, $family: $main-font) {
+  font: {
+    weight: $weight;
+    size: $size;
+    family: $family;
+  }
+  line-height: $height;
+}
+
 .grid-container {
   margin: 20px;
 }
@@ -77,16 +86,20 @@ $main-font: 'Montserrat', sans-serif;
   height: 50px;
   box-sizing: border-box;
   padding: 15px 20px;
-  font: 400 14px/24px $main-font;
+  @include font(400, 14px, 24px, $main-font);
+  //font: 400 14px/24px $main-font;
+
 }
 
 .filter__label {
   display: block;
   padding: 10px 0;
-  font: 600 16px/20px $main-font;
+  @include font(600, 16px, 20px, $main-font);
+  //font: 600 16px/20px $main-font;
 }
 
 .mat-h1 {
   padding: 0 1%;
+  //@include font(600, 16px, 20px, $main-font);
   font: 600 16px/20px $main-font;
 }
