@@ -1,6 +1,8 @@
-<label for="filter-text">Filter</label>
-<input [(ngModel)]="filterText" type="text" name="filter" id="filter-text" class="filter"
-       (change)="filterText.length > 0 ? filterArticlesList() : getData()">
+<div class="filter">
+  <label for="filter-text" class="filter__label">Filter by keywords</label>
+  <input [(ngModel)]="filterText" type="text" name="filter" id="filter-text" class="filter__text"
+         (change)="filterText.length > 0 ? filterArticlesList() : getData()">
+</div>
 <div class="grid-container">
   <h1 class="mat-h1">Results: {{articlesList.length}}</h1>
   <mat-grid-list cols="3" rowHeight="530px">
