@@ -33,13 +33,17 @@ export class HomePageComponent {
   constructor(private readonly restAPIService: RestAPIService, private router: Router  ) {}
 
   ngOnInit() {
-    this.cards.subscribe((data) => {
-      this.articlesList = data;
-    })
+   this.getData();
   }
 
   showWholeArticle(id: number) {
     this.router.navigateByUrl(`article/${id}`);
+  }
+
+  getData() {
+    this.cards.subscribe((data) => {
+      this.articlesList = data;
+    })
   }
 
   filterArticlesList () {
@@ -52,6 +56,8 @@ export class HomePageComponent {
           return b.orderByTitleMatch - a.orderByTitleMatch
         } else return (b.orderByTitleMatch + b.orderByTextMatch) - (a.orderByTitleMatch + a.orderByTextMatch)
       })
+    console.table(this.articlesList)
+
   }
 
   parseSentence(sentence: string): string[] {
