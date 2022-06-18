@@ -54,12 +54,11 @@ export class HomePageComponent {
         title: this.findMatch(article.title),
         imgUrl: article.imgUrl,
         date: article.date,
-        text: article.text,
+        text: this.findMatch(article.text),
         orderByTitleMatch: 0,
         orderByTextMatch: 0
       }
     })
-    console.log(this.articlesList)
   }
 
   filterArticles() {
@@ -87,4 +86,5 @@ export class HomePageComponent {
 
     return result.join(' ')
   }
+
 }
