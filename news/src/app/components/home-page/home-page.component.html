@@ -5,7 +5,7 @@
 </div>
 <div class="grid-container">
   <h1 class="mat-h1">Results: {{articlesList.length}}</h1>
-  <mat-grid-list cols="3" rowHeight="530px">
+  <mat-grid-list class="dashboard-card-list" [cols]="breakpoint" rowHeight="2:3" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let card of articlesList">
       <mat-card class="dashboard-card">
       <div class="dashboard-card__img-box">

@@ -15,7 +15,7 @@ export class HomePageComponent {
   parsedSentence: string[] = [];
   articleAmount: number = 30;
   articlesList: iArticle[] = [];
-
+  breakpoint: number = 1;
   cards: Observable<iArticle[]> = this.restAPIService.getArticles(this.articleAmount).pipe(
     map(( articles: any[] ) => articles.map(article => {
       return <iArticle>{
@@ -33,7 +33,11 @@ export class HomePageComponent {
   constructor(private readonly restAPIService: RestAPIService, private router: Router  ) {}
 
   ngOnInit() {
-   this.getData();
+    this.breakpoint = (window.innerWidth <= 680) ? 1
+      : (window.innerWidth <= 992) ? 2
+        : (window.innerWidth <= 1280) ? 3
+          : 4;
+    this.getData();
   }
 
   showWholeArticle(id: number) {
@@ -95,5 +99,12 @@ export class HomePageComponent {
       orderByTitleMatch: this.findWordMatch(article.title).matchersNumber,
       orderByTextMatch: this.findWordMatch(article.text).matchersNumber
     };
+  }
+
+  onResize(event:any) {
+    this.breakpoint = (event.target.innerWidth <= 680) ? 1
+        : (window.innerWidth <= 992) ? 2
+          : (window.innerWidth <= 1280) ? 3
+            : 4;
   }
 }
