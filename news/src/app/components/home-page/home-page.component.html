@@ -1,6 +1,6 @@
 <label for="filter-text">Filter</label>
 <input [(ngModel)]="filterText" type="text" name="filter" id="filter-text" class="filter"
-       (change)="rebuildArticlesList()">
+       (change)="filterArticlesList()">
 <div class="grid-container">
   <h1 class="mat-h1">Results: {{articlesList.length}}</h1>
   <mat-grid-list cols="3" rowHeight="530px">

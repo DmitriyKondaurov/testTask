@@ -42,24 +42,12 @@ export class HomePageComponent {
     this.router.navigateByUrl(`article/${id}`);
   }
 
-  rebuildArticlesList () {
+  filterArticlesList () {
     this.parsedSentence = this.removeDuplicates(this.parseSentence(this.filterText));
     this.articlesList = this.articlesList
-      .map((article) => this.checkArticle(article))
-      .filter((item) => {
-        if (item.orderByTextMatch > 0 || item.orderByTitleMatch > 0) {
-          console.log(item)
-          return true
-        } else {
-          console.log(item)
-          return false
-        }
-      })
-  }
-
-  filterArticles() {
-    this.articlesList = this.articlesList.filter((item) => !!((item.orderByTextMatch || item.orderByTitleMatch)))
-    console.log(this.articlesList)
+      .map(article => this.checkArticle(article))
+      .filter(article => article.orderByTextMatch > 0 || article.orderByTitleMatch > 0)
+      .sort((a, b) => b.orderByTitleMatch - a.orderByTitleMatch)
   }
 
   parseSentence(sentence: string): string[] {
