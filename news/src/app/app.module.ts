@@ -14,13 +14,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleComponent,
     HomePageComponent,
-    ShortenPipe
+    ShortenPipe,
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@
 <input [(ngModel)]="filterText" type="text" name="filter" id="filter-text" class="filter"
        (change)="rebuildArticlesList()">
 <div class="grid-container">
-  <h1 class="mat-h1">Results: {{articleAmount}}</h1>
+  <h1 class="mat-h1">Results: {{articlesList.length}}</h1>
   <mat-grid-list cols="3" rowHeight="530px">
     <mat-grid-tile *ngFor="let card of articlesList">
       <mat-card class="dashboard-card">
@@ -16,10 +16,10 @@
             </mat-icon>
             {{card.date}}
           </mat-card-subtitle>
-          <mat-card-title class="dashboard-card__title" [innerHTML]="card.title"></mat-card-title>
+          <mat-card-title class="dashboard-card__title" [innerHTML]="card.title | sanitizeHtml"></mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card__content-box">
-          <div [innerHTML]="card.text | shorten"></div>
+          <div [innerHTML]="card.text | shorten | sanitizeHtml"></div>
         </mat-card-content>
         <a mat-button class="button button--more" (click)=showWholeArticle(card.id)>
           Read more

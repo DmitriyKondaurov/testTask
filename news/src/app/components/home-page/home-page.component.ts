@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {map} from 'rxjs/operators';
 import {RestAPIService} from "../../services/rest-api.service";
 import {iArticle} from "../../app-interfaces";
 import {Observable} from "rxjs";
@@ -33,10 +33,6 @@ export class HomePageComponent {
   constructor(private readonly restAPIService: RestAPIService, private router: Router  ) {}
 
   ngOnInit() {
-    let a = 'row bar'
-    let b = 'bardd dgdd row bar foo fgdf'
-    console.log(a.localeCompare(b))
-    console.log(b.includes(a))
     this.cards.subscribe((data) => {
       this.articlesList = data;
     })
@@ -48,17 +44,17 @@ export class HomePageComponent {
 
   rebuildArticlesList () {
     this.parsedSentence = this.removeDuplicates(this.parseSentence(this.filterText));
-    this.articlesList = this.articlesList.map((article) => {
-      return <iArticle> {
-        id: article.id,
-        title: this.findMatch(article.title),
-        imgUrl: article.imgUrl,
-        date: article.date,
-        text: this.findMatch(article.text),
-        orderByTitleMatch: 0,
-        orderByTextMatch: 0
-      }
-    })
+    this.articlesList = this.articlesList
+      .map((article) => this.checkArticle(article))
+      .filter((item) => {
+        if (item.orderByTextMatch > 0 || item.orderByTitleMatch > 0) {
+          console.log(item)
+          return true
+        } else {
+          console.log(item)
+          return false
+        }
+      })
   }
 
   filterArticles() {
@@ -68,23 +64,38 @@ export class HomePageComponent {
 
   parseSentence(sentence: string): string[] {
     return sentence.trim().replace(/\s{2,}/g, " ").split(' ');
-    // console.log(this.parsedSentence);
   }
 
   removeDuplicates(array: string[]) {
     return array.filter((value, index) => array.indexOf(value) === index)
   }
 
-  findMatch(text: string): string {
+  findWordMatch(text: string): {text: string, matchersNumber: number} {
     const parsedText: string[] = this.parseSentence(text)
+    let result = {
+      text: '',
+      matchersNumber: 0
+    }
 
-    const result = parsedText.map((word) => {
+    result.text = parsedText.map((word) => {
       if (this.parsedSentence.includes(word)) {
+        result.matchersNumber++;
         return `<mark>${word}</mark>`
       } else return word;
-    })
+    }).join(' ')
 
-    return result.join(' ')
+    return result;
   }
 
+  checkArticle(article: iArticle): iArticle {
+    return {
+      id: article.id,
+      title: this.findWordMatch(article.title).text,
+      imgUrl: article.imgUrl,
+      date: article.date,
+      text: this.findWordMatch(article.text).text,
+      orderByTitleMatch: this.findWordMatch(article.title).matchersNumber,
+      orderByTextMatch: this.findWordMatch(article.text).matchersNumber
+    };
+  }
 }
