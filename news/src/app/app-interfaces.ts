@@ -4,6 +4,6 @@ export interface iArticle {
   imgUrl: string,
   date: string,
   text: string,
-  cols: 1,
-  rows: 1
+  orderByTitleMatch: number,
+  orderByTextMatch: number
 }
